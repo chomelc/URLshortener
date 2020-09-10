@@ -12,8 +12,12 @@ class URL:
 
     def shortenURL(self):
         self.getURL()
-        shortener = pyshorteners.Shortener()
-        self.shortURL = shortener.tinyurl.short(self.longURL)
+        try:
+            shortener = pyshorteners.Shortener()
+            self.shortURL = shortener.tinyurl.short(self.longURL)
+        except Exception:
+            print("\u001b[31mCommand failed. Please connect to the Internet.")
+            sys.exit()
 
     def copyToClipboard(self):
         pyperclip.copy(self.shortURL)
